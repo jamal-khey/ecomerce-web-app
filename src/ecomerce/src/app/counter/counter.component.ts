@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
+import { ClockService } from '../clock.service';
 
 @Component({
   selector: 'app-counter',
   templateUrl: './counter.component.html',
-  styleUrls: ['./counter.component.scss']
+  styleUrls: ['./counter.component.css']
 })
 export class CounterComponent implements OnInit {
 
-  constructor() { 
+  constructor( public clockService : ClockService) { 
     this.count = 0;
   }
 
@@ -18,5 +19,6 @@ export class CounterComponent implements OnInit {
 
   incrementCounter(){
     this.count++;
+    
   }
 }
