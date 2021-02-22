@@ -13,6 +13,30 @@
       <input type="text" formControlName="lastName">
     </mat-label>
   </div>
+
+  <div formGroupName="address">
+    <h3>Address</h3>
+  
+    <mat-label>
+      Street:
+      <input type="text" formControlName="street">
+    </mat-label>
+  
+    <mat-label>
+      City:
+      <input type="text" formControlName="city">
+    </mat-label>
+    
+    <mat-label>
+      State:
+      <input type="text" formControlName="state">
+    </mat-label>
+  
+    <mat-label>
+      Zip Code:
+      <input type="text" formControlName="zip">
+    </mat-label>
+  </div>
     <div class="example-container">
     <mat-label>Enter your email</mat-label>
       <input matInput placeholder="pat@example.com" formControlName="email" required>
