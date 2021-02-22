@@ -1,12 +1,27 @@
 <div>
 
-    <label>
-        Name:
-        <input type="text" [formControl]="name">
-      </label>
-      <p>
-        Value: {{ name.value }}
-      </p>
+  <form [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+    <div class="example-container">
+    <mat-label>
+      First Name:
+      <input type="text" formControlName="firstName">
+    </mat-label>
+  </div>
+    <div class="example-container">
+    <mat-label>
+      Last Name:
+      <input type="text" formControlName="lastName">
+    </mat-label>
+  </div>
+    <div class="example-container">
+    <mat-label>Enter your email</mat-label>
+      <input matInput placeholder="pat@example.com" formControlName="email" required>
+    <mat-error *ngIf="profileForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
+  </div>
 
+  <button type="submit" [disabled]="!profileForm.valid" mat-raised-button color="primary">Submit</button>
+  </form>
+
+      
       
 </div>
