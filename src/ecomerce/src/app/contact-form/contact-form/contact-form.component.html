@@ -43,6 +43,10 @@
     <mat-error *ngIf="profileForm.controls.email.invalid">{{getErrorMessage()}}</mat-error>
   </div>
 
+  <p>
+    Form Status: {{ profileForm.status }}
+  </p>
+
   <button type="submit" [disabled]="!profileForm.valid" mat-raised-button color="primary">Submit</button>
   </form>
 
