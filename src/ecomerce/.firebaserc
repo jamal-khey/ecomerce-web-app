@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "jibliya-cloud-patform-dev": {
+      "hosting": {
+        "ecomerce": [
+          "jibliya-cloud-patform-dev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "jibliya-web-app": "jibliya-cloud-patform-dev"
+  }
+}
