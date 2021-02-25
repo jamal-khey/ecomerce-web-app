@@ -78,11 +78,37 @@
       <div class="row">
         <div class="col">
           <mat-form-field class="full-width">
-            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number" formControlName="postalCode">
+            <input matInput #postalCode maxlength="5" placeholder="Postal Code" type="number"
+              formControlName="postalCode">
             <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
           </mat-form-field>
         </div>
       </div>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <mat-select placeholder="Product type" formControlName="productType">
+              <mat-option *ngFor="let type of productsTypes" [value]="type.name">
+                {{ type.name }}
+              </mat-option>
+            </mat-select>
+            <mat-error *ngIf="addressForm.controls['productType'].hasError('required')">
+              type is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput  placeholder="link to the product you wana buy" type="string"
+              formControlName="productLink">
+          </mat-form-field>
+        </div>
+      </div>
+
+      
       <div class="row">
         <div class="col">
           <mat-radio-group formControlName="shipping">
@@ -97,4 +123,8 @@
       <button mat-raised-button color="primary" type="submit">Submit</button>
     </mat-card-actions>
   </mat-card>
+
+  <p>
+    Form Status: {{ addressForm.value }}
+  </p>
 </form>
