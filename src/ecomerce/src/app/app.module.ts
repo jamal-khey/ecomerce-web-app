@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import {MatSelectModule} from '@angular/material/select';
+import { MatSelectModule } from '@angular/material/select';
 import { AdressTestComponent } from './adress-test/adress-test.component';
 import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
@@ -20,6 +20,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { ResponsiveToolbarComponent } from './responsive-toolbar/responsive-toolbar.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatDividerModule } from '@angular/material/divider';
 
 
 @NgModule({
@@ -27,7 +31,8 @@ import { MatListModule } from '@angular/material/list';
     AppComponent,
     CounterComponent,
     AdressTestComponent,
-    NavigationComponent
+    NavigationComponent,
+    ResponsiveToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -45,7 +50,10 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatSidenavModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    FlexLayoutModule,
+    MatMenuModule,
+    MatDividerModule
   ],
   providers: [],
   bootstrap: [AppComponent],
