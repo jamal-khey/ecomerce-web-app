@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 
+
 // The Firebase Admin SDK to access Firestore.
 const admin = require("firebase-admin");
 admin.initializeApp();
@@ -10,7 +11,8 @@ admin.initializeApp();
 export const helloWorld = functions.https
     .onRequest((request : any, response: any) => {
       functions.logger.info("Hello logs!", {structuredData: true});
-      response.send("Hello from Firebase!");
+
+      response.status(200).json({data: "data from firebase"});
     });
 
 
