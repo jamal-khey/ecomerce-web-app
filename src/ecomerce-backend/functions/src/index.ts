@@ -9,9 +9,17 @@ admin.initializeApp();
 // // https://firebase.google.com/docs/functions/typescript
 //
 export const helloWorld = functions.https
-    .onRequest((request : any, response: any) => {
+    .onRequest((req : any, response: any) => {
       functions.logger.info("Hello logs!", {structuredData: true});
-
+      //const original = req.query.text;
+      functions.logger.info('----');
+      let data = req.body;
+      //let obj = JSON.parse(data);
+      //functions.logger.info(obj);
+      //const sanitizedMessage = sanitizer.sanitizeText(text); 
+      functions.logger.info(data);
+      functions.logger.info(` value recieved =>> ${data}.`,  {structuredData: true});
+      
       response.status(200).json({data: "data from firebase"});
     });
 

@@ -30,6 +30,11 @@ import { ResponsiveToolbarComponent } from './responsive-toolbar/responsive-tool
 import {MatMenuModule} from '@angular/material/menu';
 import { MatDividerModule } from '@angular/material/divider';
 
+import { AngularFireAuthModule, USE_EMULATOR as AUTH_EMULATOR } from '@angular/fire/auth';
+import { USE_EMULATOR as FIRESTORE_EMULATOR } from '@angular/fire/firestore';
+import { USE_EMULATOR as DATABASE_EMULATOR } from '@angular/fire/database';
+import { USE_EMULATOR as FUNCTIONS_EMULATOR } from '@angular/fire/functions';
+
 
 @NgModule({
   declarations: [
@@ -64,7 +69,24 @@ import { MatDividerModule } from '@angular/material/divider';
     MatMenuModule,
     MatDividerModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: AUTH_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 9099],
+    },
+    {
+      provide: FIRESTORE_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 8080],
+    },
+    {
+      provide: DATABASE_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 9000],
+    },
+    {
+      provide: FUNCTIONS_EMULATOR,
+      useValue: environment.production ? undefined : ['localhost', 5001],
+    },
+  ],
   bootstrap: [AppComponent],
   exports: []
 })
