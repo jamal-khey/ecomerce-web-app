@@ -2,3 +2,6 @@ src/frontend/ecomerce/.firebase/hosting.ZGlzdA.cache
 src/ecomerce/.firebase/hosting.ZGlzdFxlY29tZXJjZQ.cache
 src/ecomerce/package-lock.json
 
+src/ecomerce/dist/*
+/src/ecomerce/dist
+/src/ecomerce/dist/*
