@@ -4,7 +4,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore'
-import { AngularFireFunctionsModule } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -34,6 +33,8 @@ import { AngularFireAuthModule, USE_EMULATOR as AUTH_EMULATOR } from '@angular/f
 import { USE_EMULATOR as FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 import { USE_EMULATOR as DATABASE_EMULATOR } from '@angular/fire/database';
 import { USE_EMULATOR as FUNCTIONS_EMULATOR } from '@angular/fire/functions';
+import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angular/fire/functions';
+
 
 
 @NgModule({
@@ -70,22 +71,24 @@ import { USE_EMULATOR as FUNCTIONS_EMULATOR } from '@angular/fire/functions';
     MatDividerModule
   ],
   providers: [
-    {
-      provide: AUTH_EMULATOR,
-      useValue: environment.production ? undefined : ['localhost', 9099],
-    },
-    {
-      provide: FIRESTORE_EMULATOR,
-      useValue: environment.production ? undefined : ['localhost', 8080],
-    },
-    {
-      provide: DATABASE_EMULATOR,
-      useValue: environment.production ? undefined : ['localhost', 9000],
-    },
-    {
-      provide: FUNCTIONS_EMULATOR,
-      useValue: environment.production ? undefined : ['localhost', 5001],
-    },
+    { provide: NEW_ORIGIN_BEHAVIOR, useValue: true },
+    { provide: ORIGIN, useValue: 'https://jibliya-cloud-patform-dev.web.app' }
+    // {
+    //   provide: AUTH_EMULATOR,
+    //   useValue: environment.production ? undefined : ['localhost', 9099],
+    // },
+    // {
+    //   provide: FIRESTORE_EMULATOR,
+    //   useValue: environment.production ? undefined : ['localhost', 8080],
+    // },
+    // {
+    //   provide: DATABASE_EMULATOR,
+    //   useValue: environment.production ? undefined : ['localhost', 9000],
+    // },
+    // {
+    //   provide: FUNCTIONS_EMULATOR,
+    //   useValue: environment.production ? undefined : ['localhost', 5001],
+    // },
   ],
   bootstrap: [AppComponent],
   exports: []

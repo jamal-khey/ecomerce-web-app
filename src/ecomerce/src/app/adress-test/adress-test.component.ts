@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { AngularFireFunctions } from '@angular/fire/functions';
+
 
 @Component({
   selector: 'app-adress-test',
@@ -40,10 +42,13 @@ export class AdressTestComponent {
     { name: 'electronic' },
     { name: 'food' }
   ];
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private fns: AngularFireFunctions) { }
 
   onSubmit() {
+    const callable = this.fns.httpsCallable('postDevis');
+    callable( this.addressForm.value).toPromise()
+                                    .then( (e: any)=> console.log(e))
+                                    .catch(e => console.log(e));
     
-    alert(JSON.stringify(this.addressForm.value));
   }
 }
