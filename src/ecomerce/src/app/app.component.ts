@@ -17,7 +17,7 @@ export class AppComponent implements OnInit {
   }
   ngOnInit(): void {
      const callable = this.fns.httpsCallable('helloContent');
-     callable( { name: "jamal"}).toPromise().then( (e)=> console.log(e));
+     callable( { name: "jamal"}).toPromise().then( (e)=> console.log(e)).catch( (e) => console.log(e));
      
     
   }

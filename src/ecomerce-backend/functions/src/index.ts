@@ -36,7 +36,7 @@ exports.addMessage = functions.https.onRequest(async (req: any, res: any) => {
   const writeResult = await admin.firestore()
       .collection("messages").add({original: original});
   // Send back a message that we've successfully written the message
-  res.json({result: `Message with ID: ${writeResult.id} added.`});
+  res.status(200).json({result: `Message with ID: ${writeResult.id} added.`});
 });
 
 
@@ -83,12 +83,15 @@ exports.helloContent = functions.https.onRequest(async (req: any, res: any) => {
 
 exports.postDevis = functions.https.onRequest( async (req: any, res: any) => {
   let devisData;
+  functions.logger.info("------- starting postDevis");
   res.set("Access-Control-Allow-Origin", "*");
   switch (req.get("content-type")) {
     case "application/json":
+      functions.logger.info("parsing json body");
       devisData = req.body;
       break;
     default:
+      functions.logger.console.error("this is not a json body ");
       res.status(301).json({data: {message: "request is not json type"}});
       return;
   }
@@ -98,5 +101,13 @@ exports.postDevis = functions.https.onRequest( async (req: any, res: any) => {
   const writeResult = await admin.firestore()
       .collection("devis").add(devisData);
   // Send back a message that we've successfully written the message
-  res.json({result: `Message with ID: ${writeResult.id} added.`});
+  // res.json({result: `Message with ID: ${writeResult.id} added.`});
+  const result : any = {
+    data: {
+      success: true,
+      message: `Message with ID: ${writeResult.id} added.`,
+    },
+  };
+  functions.logger.info("-------  end postDevis");
+  res.status(200).json(result);
 });

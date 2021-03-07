@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AngularFireFunctions } from '@angular/fire/functions';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @Component({
@@ -12,13 +13,13 @@ export class AdressTestComponent {
   addressForm = this.fb.group({
     firstName: [null, Validators.required],
     lastName: [null, Validators.required],
-    productType: [null, Validators.required],
-    productLink: [null, Validators.required],
+    productType: null,
+    productLink: null,
     company: null,
-    address: [null, Validators.required],
+    address: null,
     address2: null,
-    city: [null, Validators.required],
-    state: [null, Validators.required],
+    city: null,
+    state: null,
     postalCode: [null, Validators.compose([
       Validators.required, Validators.minLength(5), Validators.maxLength(5)])
     ],
