@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { AngularFireFunctions } from '@angular/fire/functions';
 import { HttpClientModule } from '@angular/common/http';
+import { CloudFunctionService } from '../services/cloud-function.service';
 
 
 @Component({
@@ -43,13 +44,14 @@ export class AdressTestComponent {
     { name: 'electronic' },
     { name: 'food' }
   ];
-  constructor(private fb: FormBuilder, private fns: AngularFireFunctions) { }
+  constructor(private fb: FormBuilder, private cfs: CloudFunctionService) { }
 
   onSubmit() {
-    const callable = this.fns.httpsCallable('postDevis');
-    callable( this.addressForm.value).toPromise()
-                                    .then( (e: any)=> console.log(e))
-                                    .catch(e => console.log(e));
+   
+
+    console.log(this.addressForm.value);
+    this.cfs.sendDevis(this.addressForm.value)
+    this.cfs.submitDevis(this.addressForm.value);
     
   }
 }

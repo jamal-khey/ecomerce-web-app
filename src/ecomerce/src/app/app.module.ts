@@ -32,9 +32,8 @@ import { MatDividerModule } from '@angular/material/divider';
 import { AngularFireAuthModule, USE_EMULATOR as AUTH_EMULATOR } from '@angular/fire/auth';
 import { USE_EMULATOR as FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 import { USE_EMULATOR as DATABASE_EMULATOR } from '@angular/fire/database';
-import { USE_EMULATOR as FUNCTIONS_EMULATOR } from '@angular/fire/functions';
+import { REGION, USE_EMULATOR as FUNCTIONS_EMULATOR, USE_EMULATOR } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angular/fire/functions';
-
 
 
 @NgModule({
@@ -71,8 +70,9 @@ import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angula
     MatDividerModule
   ],
   providers: [
-    { provide: NEW_ORIGIN_BEHAVIOR, useValue: true },
-    { provide: ORIGIN, useValue: 'https://jibliya-cloud-patform-dev.web.app' }
+  //  { provide: REGION, useValue: 'us-central1' }
+    // { provide: NEW_ORIGIN_BEHAVIOR, useValue: true },
+    // { provide: ORIGIN, useValue: 'https://jibliya-cloud-patform-dev.web.app' }
     // {
     //   provide: AUTH_EMULATOR,
     //   useValue: environment.production ? undefined : ['localhost', 9099],
@@ -89,6 +89,7 @@ import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angula
     //   provide: FUNCTIONS_EMULATOR,
     //   useValue: environment.production ? undefined : ['localhost', 5001],
     // },
+    { provide: USE_EMULATOR, useValue: ['localhost', 5001] }
   ],
   bootstrap: [AppComponent],
   exports: []
