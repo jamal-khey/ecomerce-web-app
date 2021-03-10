@@ -82,16 +82,14 @@ exports.helloContent = functions.https.onRequest(async (req: any, res: any) => {
 
 
 exports.postDevis = functions.https.onRequest( async (req: any, res: any) => {
-  let devisData;
   functions.logger.info("------- starting postDevis");
   res.setHeader("Access-Control-Allow-Origin", "*");
-  //res.setHeader("Access-Control-Allow-Methods", "POST,GET,OPTIONS,PUT,DELETE");
+  // res.setHeader("Access-Control-Allow-Methods",
+  //                "POST,GET,OPTIONS,PUT,DELETE");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type,Accept");
 
-  functions.logger.info("recieved data ");
-  functions.logger.info(devisData);
-  devisData = req.body;
-  if( devisData !== undefined){
+  const devisData = req.body;
+  if ( devisData !== undefined) {
     // TODO check if all
     // Push the new message into Firestore using the Firebase Admin SDK.
     const writeResult = await admin.firestore()
@@ -109,9 +107,8 @@ exports.postDevis = functions.https.onRequest( async (req: any, res: any) => {
     res.status(301).json({
       data: {
         success: false,
-        message:"sauve garde du devis a echoue"
-      }
+        message: "sauve garde du devis a echoue",
+      },
     });
   }
-  
 });
