@@ -34,6 +34,7 @@ import { USE_EMULATOR as FIRESTORE_EMULATOR } from '@angular/fire/firestore';
 import { USE_EMULATOR as DATABASE_EMULATOR } from '@angular/fire/database';
 import { REGION, USE_EMULATOR as FUNCTIONS_EMULATOR, USE_EMULATOR } from '@angular/fire/functions';
 import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angular/fire/functions';
+import { SignInComponent } from './components/sign-in/sign-in.component';
 
 
 @NgModule({
@@ -42,7 +43,8 @@ import { AngularFireFunctionsModule, ORIGIN, NEW_ORIGIN_BEHAVIOR } from '@angula
     CounterComponent,
     AdressTestComponent,
     NavigationComponent,
-    ResponsiveToolbarComponent
+    ResponsiveToolbarComponent,
+    SignInComponent
   ],
   imports: [
     AngularFireModule.initializeApp(environment.firebase),
