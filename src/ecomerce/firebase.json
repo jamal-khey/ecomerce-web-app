@@ -25,10 +25,6 @@
         {
           "source": "/helloContent",
           "function": "helloContent"
-        },
-        {
-          "source": "/postDevis",
-          "function": "postDevis"
         }
       ]
     }

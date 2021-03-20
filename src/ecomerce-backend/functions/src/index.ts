@@ -12,32 +12,12 @@ admin.initializeApp();
 export const helloWorld = functions.https
     .onRequest((req : any, response: any) => {
       response.set("Access-Control-Allow-Origin", "*");
-      functions.logger.info("Hello logs!", {structuredData: true});
-      // const original = req.query.text;
-      functions.logger.info("----");
       const data = req.body;
-      // let obj = JSON.parse(data);
-      // functions.logger.info(obj);
-      // const sanitizedMessage = sanitizer.sanitizeText(text);
-      functions.logger.info(data);
       functions.logger.info(`value recieved  ${data}.`, {structuredData: true});
 
       response.status(200).json({data: "data from firebase"});
     });
 
-
-// Take the text parameter passed to this HTTP endpoint and insert it into
-// Firestore under the path /messages/:documentId/original
-exports.addMessage = functions.https.onRequest(async (req: any, res: any) => {
-  res.set("Access-Control-Allow-Origin", "*");
-  // Grab the text parameter.
-  const original = req.query.text;
-  // Push the new message into Firestore using the Firebase Admin SDK.
-  const writeResult = await admin.firestore()
-      .collection("messages").add({original: original});
-  // Send back a message that we've successfully written the message
-  res.status(200).json({result: `Message with ID: ${writeResult.id} added.`});
-});
 
 
 /**
@@ -90,19 +70,30 @@ exports.postDevis = functions.https.onRequest( async (req: any, res: any) => {
 
   const devisData = req.body;
   if ( devisData !== undefined) {
-    // TODO check if all
+    
     // Push the new message into Firestore using the Firebase Admin SDK.
-    const writeResult = await admin.firestore()
-        .collection("devis").add(devisData);
-    // Send back a message that we've successfully written the message
-    const result : any = {
-      data: {
-        success: true,
-        message: `Message with ID: ${writeResult.id} added.`,
-      },
-    };
-    functions.logger.info("-------  end postDevis");
-    res.status(200).json(result);
+    if (devisData.data != undefined){
+      const writeResult = await admin.firestore()
+          .collection("devis").add(devisData.data);
+      // Send back a message that we've successfully written the message
+      const result : any = {
+        data: {
+          success: true,
+          message: `Message with ID: ${writeResult.id} added.`,
+        },
+      };
+      res.status(200).json(result);
+    }
+    else{
+      const result : any = {
+        data: {
+          success: false,
+          message: `empty data , nothing saved in the data base`,
+        },
+      };
+      res.status(200).json(result);
+    }
+    
   } else {
     res.status(301).json({
       data: {

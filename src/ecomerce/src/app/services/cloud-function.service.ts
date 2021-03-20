@@ -18,9 +18,6 @@ export class CloudFunctionService {
 
   }
 
-  sendDevis(data: any){
-    return this.http.post(BASE_API_URL+'/postDevis', JSON.stringify(data), httpOptions);
-  }
 
   submitDevis(data: any){
      const callable = this.fns.httpsCallable('postDevis');

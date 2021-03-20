@@ -50,7 +50,6 @@ export class AdressTestComponent {
    
 
     console.log(this.addressForm.value);
-    this.cfs.sendDevis(this.addressForm.value)
     this.cfs.submitDevis(this.addressForm.value);
     
   }
